@@ -80,7 +80,7 @@ export const Userinfo = () => {
         <div>
             <StyledFromArea bg={colors.dark1}>
                 <Avatar image={Logo}/>
-                <StyledTitle size={65}>Hello sdzsfcszxs User</StyledTitle>
+                <StyledTitle size={65}>push here</StyledTitle>
             </StyledFromArea>
         </div>
 
