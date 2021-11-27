@@ -1,7 +1,4 @@
 
-
-
-
 import React from "react";
 import {
     StyledTitle,
@@ -13,8 +10,10 @@ import {
 } from "../components/Styles";
 //logo
 import Logo from './../assets/logo.png'
+import {connect} from "react-redux";
+import {Userinfo} from  '../auth/actions/userActions'
 
-const NewUser = () => {
+const NewUser = ({Userinfo}) => {
     return (
         <div>
             <div style={{
@@ -27,9 +26,10 @@ const NewUser = () => {
                 display: 'flex',
                 justifyContent: 'flex-start'
             }}>
-                <Avatar image={Logo}/>
+
             </div>
             <StyledFromArea bg={colors.dark1}>
+                <Avatar image={Logo}/>
                 <StyledTitle size={65}>Hello User</StyledTitle>
                 <ButtonGroup>
                     <StyledButton to="#">Logout</StyledButton>
@@ -40,4 +40,4 @@ const NewUser = () => {
     )
 }
 
-export default NewUser;
+export default connect(null,{Userinfo})(NewUser) ;
