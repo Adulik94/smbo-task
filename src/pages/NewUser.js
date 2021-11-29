@@ -31,7 +31,10 @@ const NewUser = ({Userinfo}) => {
             <StyledFromArea bg={colors.dark1}>
                 <Avatar image={Logo}/>
                 <StyledTitle size={65}>Hello User</StyledTitle>
+                <Userinfo/>
+
                 <ButtonGroup>
+
                     <StyledButton to="#">Logout</StyledButton>
                 </ButtonGroup>
             </StyledFromArea>

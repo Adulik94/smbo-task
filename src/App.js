@@ -28,8 +28,6 @@ function App() {
                     <Home/>
                 </Route>
                 </Switch>
-
-
             </StyledContainer>
         </Router>
 

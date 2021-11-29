@@ -1,7 +1,6 @@
 import axios from "axios";
-import React from "react";
-import {Avatar, colors, StyledFromArea, StyledTitle} from "../../components/Styles";
-import Logo from "../../assets/logo.png";
+import React, {useEffect, useState} from "react";
+// import {Redirect} from "react-router-dom";
 
 
 //------------explanations for me-------------------
@@ -12,23 +11,19 @@ import Logo from "../../assets/logo.png";
 //------------end-------------------
 
 export const loginUser = (values, history, setFieldError, setSubmitting) => {
+    console.log("values from action", values)
+    const username = values.email.split("@")[0]
+    console.log("user name", username)
     return () => {
-        axios.get('https://api2.binance.com/api/v3/ticker/24hr', {
-                email: "adi@gmail.com",
-                password: 12345678
-            }
+        axios.get('https://api.agify.io/?', values
         ).then((response) => {
-            console.log(response)
-            history.push('/user')
-
-            //completed submitting
-            setSubmitting(false);
-
+            //if res ok
+            console.log("response", response)
+            // history.push("/user")
+            // <Redirect to="/user"/>
         }).catch(error => console.error(error))
-        history.push('/user')
+        setSubmitting(false);
     }
-
-
 }
 
 //------------explanations for me-------------------
@@ -76,15 +71,31 @@ export const signupUser = (values, history, setFieldError, setSubmitting) => {
 
 
 export const Userinfo = () => {
-    return (
-        <div>
-            <StyledFromArea bg={colors.dark1}>
-                <Avatar image={Logo}/>
-                <StyledTitle size={65}>push here</StyledTitle>
-            </StyledFromArea>
-        </div>
-
-    );
+    // const [state, setState] = useState({info: []});
+    // useEffect(() => {
+    //     axios
+    //         .get("https://api2.binance.com/api/v3/ticker/24hr")
+    //         .then((response) => {
+    //             setState({
+    //                 info: response.data
+    //             });
+    //             console.log(response.data);
+    //         });
+    // }, [])
+    //
+    // const {info} = state;
+    // return (
+    //     <div>
+    //         <h2>post!</h2>
+    //         {/*{info.map((user) => (*/}
+    //         {/*    <div key={user.data}>*/}
+    //         {/*        <h6>{user.count}</h6>*/}
+    //         {/*    </div>*/}
+    //         {/*))}*/}
+    //     </div>
+    // );
 }
 
-
+//login sxmeluc parse anq anum email@ vercnum eng minchev @,ogtagorcum eng vorpes username
+//username ogtagorcum enq vor call anenq api-in userin stanalu hamar
+//success stanalu depqum set anel vorpes global user u redirect anel user ej
