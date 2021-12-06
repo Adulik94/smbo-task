@@ -38,7 +38,7 @@ const Dashboard = ({logoutUser}) => {
                 <Avatar image={Logo}/>
             </div>
             <StyledFromArea bg={colors.dark2}>
-                <StyledTitle size={65}>Hello,{JSON.stringify(user)}
+                <StyledTitle size={65}>Hello {JSON.stringify(user)}
                 </StyledTitle>
                 {/*<ExtraText color={colors.light1}>{username.email}</ExtraText>*/}
                 <Userinfo/>

@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-// import {sessionService} from "redux-react-session"
-import { colors, StyledFromArea, StyledTitle } from "../../components/Styles";
+//import { colors, StyledFromArea, StyledTitle } from "../../components/Styles";
 import {sessionService} from "redux-react-session";
 
 //------------explanations for me-------------------
@@ -24,6 +23,7 @@ export const loginUser = (values, history, setFieldError, setSubmitting) => {
             })
             .then((response) => {
                 //if res ok
+                console.log("response", response);
                 console.log("username", username);
                 dispatch({
                     type: "ADD_USER",
@@ -43,7 +43,7 @@ export const loginUser = (values, history, setFieldError, setSubmitting) => {
 //setFieldError -errors
 //------------end-------------------
 
-export const signupUser = (values, history, setFieldError, setSubmitting) => {
+export const signupUser = () => {
     // console.log("signupUser -", values)
     // return (dispatch) => {
     //     axios.post('http://212.42.212.29:3001/auth/register', values, {
@@ -87,27 +87,24 @@ export const logoutUser = (history) => {
 };
 
 export const Userinfo = () => {
-    const [state, setState] = useState({ info: [] });
+    const [apiData, setApiData] = useState([]);
+
+    // an alternative for componentDidMount
     useEffect(() => {
         axios
-            .get("https://api2.binance.com/api/v3/ticker/24hr")
-            .then((response) => {
-                setState({
-                    info: response.data
-                });
-                console.log("res data", response.data);
-            });
-    }, []);
-    const { info } = state;
+            .get("https://jsonplaceholder.typicode.com/users")
+            .then((json_result) => setApiData(json_result.data))
+            // or
+            //.then(json_result => handleState(json_result.data))
+            .catch((error) => console.log(error));
+    }, []); // an empty array dependency (makes the useEffect to run only once, to avoid infinite loop)
+
     return (
-        <StyledFromArea bg={colors.dark2}>
-            <StyledTitle size={16}>post!</StyledTitle>
-            {/* {info.map((user) => (*/}
-            {/*     <StyledTitle   key={user.data}>*/}
-            {/*         <StyledTitle size={20}>{user.count}</StyledTitle>*/}
-            {/*     </StyledTitle>*/}
-            {/* ))}*/}
-        </StyledFromArea>
+        <div>
+            {apiData.map((item) => {
+                return <div key={item.id}>{item.name}</div>;
+            })}
+        </div>
     );
 };
 
