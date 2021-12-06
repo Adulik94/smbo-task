@@ -19,7 +19,7 @@ export const TextInput = ({icon,...props }) => {
                 <StyledTextInput
                     invalid={meta.touched && meta.error}
                     {...field} {...props}
-                                  type={show ? "text" : "password"}
+                    type={show ? "text" : "password"}
                 />
             )}
 

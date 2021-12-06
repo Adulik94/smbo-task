@@ -1,14 +1,14 @@
 //style
-import {StyledContainer} from "./components/Styles";
+import { StyledContainer } from "./components/Styles";
 //pages
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import NewUser from "./pages/NewUser";
+import Dashboard from "./pages/Dashboard";
 //loader
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
     return (
@@ -16,22 +16,20 @@ function App() {
             <StyledContainer>
                 <Switch>
                     <Route path="/signup">
-                        <Signup/>
+                        <Signup />
                     </Route>
                     <Route path="/login">
-                        <Login/>
+                        <Login />
                     </Route>
                     <Route path="/user">
-                        <NewUser/>
+                        <Dashboard />
                     </Route>
                     <Route path="/">
-                    <Home/>
-                </Route>
+                        <Home />
+                    </Route>
                 </Switch>
             </StyledContainer>
         </Router>
-
-
     );
 }
 
