@@ -19,10 +19,11 @@ import {logoutUser} from '../auth/actions/userActions'
 //history
 import {useHistory} from "react-router-dom";
 
-const Dashboard = ({logoutUser}) => {
+const Dashboard = ({logoutUser,user}) => {
     const history = useHistory();
-    const selectUser = (state)=> state.user
-    const user = useSelector(selectUser)
+    // const selectUser = (state)=> state.user
+    // const user = useSelector(selectUser)
+    console.log("user",user)
     return (
         <div>
             <div style={{
@@ -34,13 +35,12 @@ const Dashboard = ({logoutUser}) => {
                 padding: '15px',
                 display: 'flex',
                 justifyContent: 'flex-start'
-            }}>
+            }}
+            >
                 <Avatar image={Logo}/>
             </div>
             <StyledFromArea bg={colors.dark2}>
-                <StyledTitle size={65}>Hello {JSON.stringify(user)}
-                </StyledTitle>
-                {/*<ExtraText color={colors.light1}>{username.email}</ExtraText>*/}
+                <StyledTitle size={65}>Welcome {user.name}</StyledTitle>
                 <Userinfo/>
                 <ButtonGroup>
                     <StyledButton to="#" onClick={() => logoutUser(history)}>Logout</StyledButton>
@@ -49,8 +49,14 @@ const Dashboard = ({logoutUser}) => {
 
         </div>
     )
+
 }
 
+const mapStateToProps=({session})=>({
+    user:session.user
+
+})
 
 
-export default connect(null, {logoutUser})(Dashboard);
+
+export default connect(mapStateToProps, {logoutUser})(Dashboard);

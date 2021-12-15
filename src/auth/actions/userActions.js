@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 //import { colors, StyledFromArea, StyledTitle } from "../../components/Styles";
 import {sessionService} from "redux-react-session";
 
@@ -17,6 +17,7 @@ export const loginUser = (values, history, setFieldError, setSubmitting) => {
     return (dispatch) => {
         axios
             .get(url, {
+                //query parameter
                 params: {
                     name: username
                 }
@@ -29,7 +30,7 @@ export const loginUser = (values, history, setFieldError, setSubmitting) => {
                     type: "ADD_USER",
                     payload: username
                 });
-                history.push("/user");
+                history.push("/dashboard");
             })
             .catch((error) => console.error(error));
         setSubmitting(false);
@@ -102,7 +103,9 @@ export const Userinfo = () => {
     return (
         <div>
             {apiData.map((item) => {
-                return <div key={item.id}>{item.name}</div>;
+                return(
+                <div key={item.id}>{item.name}</div>
+            );
             })}
         </div>
     );
