@@ -4,8 +4,8 @@ import {
     colors,
     ButtonGroup,
     StyledFormButton,
-    StyledFromArea,
-    StyledTitle, ExtraText, TextLink, CopyrightText,
+    StyledFormArea,
+    StyledTitle, ExtraText, TextLink, CopyRightText,
 } from "../components/Styles";
 import Logo from './../assets/logo.png';
 //formik
@@ -30,7 +30,7 @@ const Signup = ({signupUser}) => {
 
     return (
         <div>
-            <StyledFromArea>
+            <StyledFormArea>
                 <Avatar image={Logo}/>
                 <StyledTitle color={colors.theme} size={30}>User Signup </StyledTitle>
                 <Formik
@@ -112,10 +112,11 @@ const Signup = ({signupUser}) => {
                     )}
                 </Formik>
                 <ExtraText>
+
                    Already have an account? <TextLink to="/login">Login </TextLink>
                 </ExtraText>
-            </StyledFromArea>
-            <CopyrightText>All rights are reserved &copy;2021 </CopyrightText>
+            </StyledFormArea>
+            <CopyRightText>All rights are reserved &copy;2021 </CopyRightText>
         </div>
     );
 }

@@ -1,7 +1,9 @@
 import axios from "axios";
-import React, {useEffect, useState} from "react";
-//import { colors, StyledFromArea, StyledTitle } from "../../components/Styles";
-import {sessionService} from "redux-react-session";
+
+import { sessionService } from "redux-react-session";
+import { useEffect, useState } from "react";
+//api
+import { signInUrl } from "../../api/api";
 
 //------------explanations for me-------------------
 //setSubmitting (false)-finishing the cycle
@@ -10,80 +12,84 @@ import {sessionService} from "redux-react-session";
 //setFieldError -errors
 //------------end-------------------
 
-const url = `https://api.agify.io`;
-
 export const loginUser = (values, history, setFieldError, setSubmitting) => {
-    const username = values.email.split("@")[0];
-    return (dispatch) => {
+    //values from
+    const paramName = values.email.split("@")[0];
+    return () => {
+        //get some data
         axios
-            .get(url, {
-                //query parameter
+            .get(signInUrl, {
+                //query parameter for passing specific "Name" to the api
                 params: {
-                    name: username
+                    name: paramName
                 }
             })
             .then((response) => {
-                //if res ok
-                console.log("response", response);
-                console.log("username", username);
-                dispatch({
-                    type: "ADD_USER",
-                    payload: username
-                });
-                history.push("/dashboard");
-            })
-            .catch((error) => console.error(error));
+                // console.log("data here => 0", response.data);
+                const { data } = response;
+                //  console.log("{data}",data)
+                const userData = data.name;
+                //console.log("userData",userData)
+                const token = userData;
+                console.log("token", token);
+                sessionService
+                    .saveSession(token)
+                    .then(() => {
+                        sessionService
+                            .saveUser(userData)
+                            .then(() => {
+                                history.push("/dashboard");
+                            })
+                            .catch((err) => console.error(err));
+                    })
+                    .catch((err) => console.error(err));
+            });
+        //complete submission
         setSubmitting(false);
     };
 };
-
-//------------explanations for me-------------------
-//setSubmitting (false)-finishing the cycle
-//values -values that user enter
-//history -redirect the user tu user page history = useHistory();
-//setFieldError -errors
-//------------end-------------------
-
-export const signupUser = () => {
-    // console.log("signupUser -", values)
-    // return (dispatch) => {
-    //     axios.post('http://212.42.212.29:3001/auth/register', values, {
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //     }).then((response) => {
-    //         console.log(response.data.message);
-    //         const {error} = response
-    //         if (error.statusCode === 409) {
-    //             const {message} = error
-    //
-    //             //checking for specific errors
-    //             if (message.includes("email")) {
-    //
-    //                 setFieldError("password", message)
-    //             } else if (message.includes("password")) {
-    //                 setFieldError("password", message)
-    //                 setFieldError("firstName", message)
-    //                 setFieldError("lastName", message)
-    //             }
-    //             //complete submission
-    //         } else if (error.statusCode === 201) {
-    //             //login user after successfully signup
-    //             const {email, password} = values
-    //             dispatch(loginUser({email, password}, history, setFieldError, setSubmitting))
-    //             history.push('/user')
-    //         }
-    //         setSubmitting(false);
-    //
-    //     })
-    // }
-};
-
-export const logoutUser = (history) => {
-    return () => {
-        sessionService.deleteSession()
-        sessionService.deleteUser()
-        history.push("/");
+//
+export const signupUser = (
+    credentials,
+    history,
+    setFieldError,
+    setSubmitting
+) => {
+    return async (dispatch) => {
+        // const response = await axios.get(
+        //     url,
+        //     credentials,
+        //     {
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //         },
+        //     },
+        // );
+        //
+        // const {data} = response;
+        // console.log("here : .>", data.status);
+        //
+        // if (data.status === 400) {
+        //     const {message} = data;
+        //     if (message.includes("Email")) {
+        //         setFieldError("email", message);
+        //     }
+        //     //complete submission
+        //     setSubmitting(false);
+        // } else if (data.status === 200) {
+        //     //login user after signup
+        //     const {email, password} = credentials;
+        //     console.log("from signup=>", email, password);
+        //
+        //     dispatch(
+        //         loginUser(
+        //             {email, password},
+        //             history,
+        //             setFieldError,
+        //             setSubmitting,
+        //         ),
+        //     );
+        // }
     };
 };
 
@@ -103,16 +109,16 @@ export const Userinfo = () => {
     return (
         <div>
             {apiData.map((item) => {
-                return(
-                <div key={item.id}>{item.name}</div>
-            );
+                return <div key={item.id}>{item.name}</div>;
             })}
         </div>
     );
 };
 
-//login sxmeluc parse anq anum email@ vercnum eng minchev @,ogtagorcum eng vorpes username
-//username ogtagorcum enq vor call anenq api-in userin stanalu hamar
-//success stanalu depqum set anel vorpes global user u redirect anel user ej
-
-//inch e rest@ query param. resi metodner
+export const logoutUser = (history) => {
+    return () => {
+        sessionService.deleteSession();
+        sessionService.deleteUser();
+        history.push("/");
+    };
+};

@@ -1,12 +1,12 @@
 import React from "react";
 import {
     StyledTitle,
-    StyledSubTitle,
+    StyledSubtitle,
     Avatar,
     StyledButton,
     ButtonGroup,
     colors,
-    StyledFromArea
+    StyledFormArea
 } from "../components/Styles";
 //logo
 import Logo from './../assets/logo.png'
@@ -26,14 +26,14 @@ const Home = () => {
             }}>
                 <Avatar image={Logo}/>
             </div>
-            <StyledFromArea bg={colors.dark3}>
+            <StyledFormArea bg={colors.dark3}>
                 <StyledTitle size={65}>Welcome To Page</StyledTitle>
-                <StyledSubTitle size={27}>Fell Free Fell Free Fell Free </StyledSubTitle>
+                <StyledSubtitle size={27}>Fell Free Fell Free Fell Free </StyledSubtitle>
                 <ButtonGroup>
                     <StyledButton to='/login'>LogIn</StyledButton>
-                    <StyledButton to='signup'>Signup</StyledButton>
+                    <StyledButton to='/signup'>Signup</StyledButton>
                 </ButtonGroup>
-            </StyledFromArea>
+            </StyledFormArea>
         </div>
     )
 }

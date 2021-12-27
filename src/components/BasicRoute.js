@@ -1,29 +1,30 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
+// Dashboard cannot be accessed unless logged in
 
-const BasicRoute = ({ children, authenticated, ...rest }) => {
+import {Route , Redirect} from 'react-router-dom'
+import {connect} from "react-redux";
+
+const BasicRoute = ({children , authenticated , ...rest}) => {
     return (
         <Route
             {...rest}
-            render={({ location }) =>
-                !authenticated ? (
-                    children
-                ) : (
+            render={
+                ({location}) => !authenticated ? (children) : (
                     <Redirect
                         to={{
                             pathname: "/dashboard",
-                            state: { from: location },
+                            state: {from: location}
+
                         }}
                     />
                 )
             }
         />
-    );
-};
+    )
+}
 
-const mapStateToProps = ({ session }) => ({
-    authenticated: session.authenticated,
-});
+const mapStateToProps = ({session}) => ({
+    authenticated: session.authenticated
 
-export default connect(mapStateToProps)(BasicRoute);
+})
+
+export default connect(mapStateToProps)(BasicRoute)

@@ -8,7 +8,7 @@ import Dashboard from "./pages/Dashboard";
 //loader
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { BrowserRouter as Router, Switch } from "react-router-dom"
 
 //auth & redux
 import AuthRoute from "./components/AuthRoute";
@@ -17,23 +17,24 @@ import {connect} from "react-redux";
 
 
 function App({checked}) {
+    console.log("checked",checked)
     return (
         <Router>
             {checked && (
                 <StyledContainer>
                     <Switch>
-                        <BasicRoute path="/signup">
+                        <BasicRoute exact path ="/">
+                            <Home/>
+                        </BasicRoute>
+                        <BasicRoute exact path="/signup" >
                             <Signup/>
                         </BasicRoute>
-                        <BasicRoute path="/login">
+                        <BasicRoute exact path="/login">
                             <Login/>
                         </BasicRoute>
-                        <AuthRoute path="/dashboard">
+                        <AuthRoute exact path="/dashboard">
                             <Dashboard/>
                         </AuthRoute>
-                        <Route path="/">
-                            <Home/>
-                        </Route>
                     </Switch>
                 </StyledContainer>)
             }
