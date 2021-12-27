@@ -15,7 +15,7 @@ import { signInUrl } from "../../api/api";
 export const loginUser = (values, history, setFieldError, setSubmitting) => {
     //values from
     const paramName = values.email.split("@")[0];
-    return () => {
+    return (dispatch) => {
         //get some data
         axios
             .get(signInUrl, {
@@ -29,7 +29,7 @@ export const loginUser = (values, history, setFieldError, setSubmitting) => {
                 const { data } = response;
                 //  console.log("{data}",data)
                 const userData = data.name;
-                //console.log("userData",userData)
+                console.log("userData",userData)
                 const token = userData;
                 console.log("token", token);
                 sessionService
@@ -38,6 +38,11 @@ export const loginUser = (values, history, setFieldError, setSubmitting) => {
                         sessionService
                             .saveUser(userData)
                             .then(() => {
+                                  dispatch({
+                                      type:"ADD_USER",
+                                      payload:paramName
+                                  })
+
                                 history.push("/dashboard");
                             })
                             .catch((err) => console.error(err));
@@ -50,10 +55,10 @@ export const loginUser = (values, history, setFieldError, setSubmitting) => {
 };
 //
 export const signupUser = (
-    credentials,
-    history,
-    setFieldError,
-    setSubmitting
+    // credentials,
+    // history,
+    // setFieldError,
+    // setSubmitting
 ) => {
     return async (dispatch) => {
         // const response = await axios.get(

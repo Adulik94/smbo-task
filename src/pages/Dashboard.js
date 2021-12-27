@@ -5,7 +5,7 @@ import {
     StyledButton,
     ButtonGroup,
     StyledFormArea,
-    colors, StyledSubtitle
+    colors
 } from "../components/Styles";
 //logo
 import Logo from "./../assets/logo.png";
@@ -23,25 +23,29 @@ const Dashboard = ({ logoutUser, user }) => {
     console.log("Dashboard user", user);
     return (
         <div>
-            <div style={{
-                position:"absolute",
-                top:0,
-                left:0,
-                backgroundColor:"transparent",
-                width:"100%",
-                padding:"15px",
-                display:"flex",
-                justifyContent:"flex-start"
-            }} >
+            <div
+                style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    backgroundColor: "transparent",
+                    width: "100%",
+                    padding: "0px",
+                    display: "flex",
+                    justifyContent: "flex-start"
+                }}
+            >
                 <Avatar image={Logo} />
             </div>
-            <StyledFormArea bg={colors.dark2} >
-                <StyledTitle size={65} >
-                    Welcome , {user.name}
+            <StyledFormArea bg={colors.dark2}>
+                <StyledTitle size={65}>
+                    Welcome {typeof user !== "string" ? "" : user}
                 </StyledTitle>
-                   <Userinfo/>
+                <Userinfo />
                 <ButtonGroup>
-                    <StyledButton to="#" onClick={() => logoutUser(history)}>Logout</StyledButton>
+                    <StyledButton to="#" onClick={() => logoutUser(history)}>
+                        Logout
+                    </StyledButton>
                 </ButtonGroup>
             </StyledFormArea>
         </div>

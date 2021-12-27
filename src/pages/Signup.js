@@ -112,7 +112,6 @@ const Signup = ({signupUser}) => {
                     )}
                 </Formik>
                 <ExtraText>
-
                    Already have an account? <TextLink to="/login">Login </TextLink>
                 </ExtraText>
             </StyledFormArea>
