@@ -4,8 +4,8 @@ import {
     colors,
     ButtonGroup,
     StyledFormButton,
-    StyledFromArea,
-    StyledTitle, ExtraText, TextLink, CopyrightText,
+    StyledFormArea,
+    StyledTitle, ExtraText, TextLink, CopyRightText,
 } from "../components/Styles";
 import Logo from './../assets/logo.png';
 //formik
@@ -30,7 +30,7 @@ const Signup = ({signupUser}) => {
 
     return (
         <div>
-            <StyledFromArea>
+            <StyledFormArea>
                 <Avatar image={Logo}/>
                 <StyledTitle color={colors.theme} size={30}>User Signup </StyledTitle>
                 <Formik
@@ -41,7 +41,7 @@ const Signup = ({signupUser}) => {
                             .required("Required"),
                         password: Yup.string()
                             .required("No password provided.")
-                            .min(8, "Password is too short - should be 8 chars minimum.")
+                            .min(6, "Password is too short - should be 6 chars minimum.")
                             .matches(/(?=.*[0-9])/, "Password must contain a number."),
                         passwordConfirm: Yup.string()
                             .oneOf([Yup.ref('password'), null], 'Passwords must match'),
@@ -70,11 +70,10 @@ const Signup = ({signupUser}) => {
                             <TextInput
                                 type='text'
                                 name = 'lastName'
-                                label='lastname'
+                                label='Last Name'
                                 placeholder='Doe'
                                 icon={<FiUser/>}
                             />
-
                             <TextInput
                                 name='email'
                                 type='text'
@@ -90,7 +89,7 @@ const Signup = ({signupUser}) => {
                                 icon={<FiLock/>}
                             />
                             <TextInput
-                                name='password'
+                                name='passwordConfirm'
                                 type='password'
                                 label='Confirm Password'
                                 placeholder='*********'
@@ -115,8 +114,8 @@ const Signup = ({signupUser}) => {
                 <ExtraText>
                    Already have an account? <TextLink to="/login">Login </TextLink>
                 </ExtraText>
-            </StyledFromArea>
-            <CopyrightText>All rights are reserved &copy;2021 </CopyrightText>
+            </StyledFormArea>
+            <CopyRightText>All rights are reserved &copy;2021 </CopyRightText>
         </div>
     );
 }

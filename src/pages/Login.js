@@ -4,8 +4,8 @@ import {
     colors,
     ButtonGroup,
     StyledFormButton,
-    StyledFromArea,
-    StyledTitle, ExtraText, TextLink, CopyrightText,
+    StyledFormArea,
+    StyledTitle, ExtraText, TextLink, CopyRightText,
 } from "../components/Styles";
 import Logo from './../assets/logo.png';
 //formik
@@ -21,13 +21,14 @@ import Loader from "react-loader-spinner";
 
 import {connect} from "react-redux";
 import {loginUser} from "../auth/actions/userActions";
-import {useHistory} from "react-router-dom";
+import { useHistory} from "react-router-dom";
+
 
 const Login = ({loginUser}) => {
     const history = useHistory();
     return (
         <div>
-            <StyledFromArea>
+            <StyledFormArea>
                 <Avatar image={Logo}/>
                 <StyledTitle color={colors.theme} size={30}>Hello User</StyledTitle>
                 <Formik
@@ -74,7 +75,7 @@ const Login = ({loginUser}) => {
                                     <Loader
                                         type="Bars"
                                         color={colors.theme}
-                                        height={49}
+                                        height={50}
                                         width={100}
                                     />
                                 )}
@@ -83,10 +84,10 @@ const Login = ({loginUser}) => {
                     )}
                 </Formik>
                 <ExtraText>
-                    New here?( ͡≖ ‿‿ ͡≖) 👉<TextLink to="/signup">Signup </TextLink>
+                    New here?( ͡≖ ‿‿ ͡≖) 👉<TextLink to="/signup"> Signup </TextLink>
                 </ExtraText>
-            </StyledFromArea>
-            <CopyrightText>All rights are reserved &copy;2021 </CopyrightText>
+            </StyledFormArea>
+            <CopyRightText>All rights are reserved &copy;2021 </CopyRightText>
         </div>
     );
 }

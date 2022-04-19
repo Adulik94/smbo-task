@@ -1,39 +1,47 @@
 //style
-import {StyledContainer} from "./components/Styles";
+import { StyledContainer } from "./components/Styles";
 //pages
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import NewUser from "./pages/NewUser";
+import Dashboard from "./pages/Dashboard";
 //loader
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom"
 
-function App() {
+//auth & redux
+import AuthRoute from "./components/AuthRoute";
+import BasicRoute from "./components/BasicRoute";
+import {connect} from "react-redux";
+
+
+function App({checked}) {
+    console.log("checked",checked)
     return (
         <Router>
-            <StyledContainer>
-                <Switch>
-                    <Route path="/signup">
-                        <Signup/>
-                    </Route>
-                    <Route path="/login">
-                        <Login/>
-                    </Route>
-                    <Route path="/user">
-                        <NewUser/>
-                    </Route>
-                    <Route path="/">
-                    <Home/>
-                </Route>
-                </Switch>
-
-            </StyledContainer>
+            {checked && (
+                <StyledContainer>
+                    <Switch>
+                        <BasicRoute exact path ="/">
+                            <Home/>
+                        </BasicRoute>
+                        <BasicRoute exact path="/signup" >
+                            <Signup/>
+                        </BasicRoute>
+                        <BasicRoute exact path="/login">
+                            <Login/>
+                        </BasicRoute>
+                        <AuthRoute exact path="/dashboard">
+                            <Dashboard/>
+                        </AuthRoute>
+                    </Switch>
+                </StyledContainer>)
+            }
         </Router>
-
-
     );
 }
-
-export default App;
+const mapStateToProps=({session})=>({
+    checked:session.checked
+})
+export default connect(mapStateToProps) (App);
