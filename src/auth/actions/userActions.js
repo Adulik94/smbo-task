@@ -113,9 +113,9 @@ export const Userinfo = () => {
 
     return (
         <div>
-            {apiData.map((item) => {
-                return <div key={item.id}>{item.name}</div>;
-            })}
+            {/*{apiData.map((item) => {*/}
+            {/*    return <div key={item.id}>{item.name}</div>;*/}
+            {/*})}*/}
         </div>
     );
 };

@@ -17,6 +17,7 @@ import { logoutUser } from "../auth/actions/userActions";
 
 //history
 import { useHistory } from "react-router-dom";
+import Search from "./Search";
 
 const Dashboard = ({ logoutUser, user }) => {
     const history = useHistory();
@@ -35,13 +36,13 @@ const Dashboard = ({ logoutUser, user }) => {
                     justifyContent: "flex-start"
                 }}
             >
-                <Avatar image={Logo} />
             </div>
             <StyledFormArea bg={colors.dark2}>
                 <StyledTitle size={65}>
                     Welcome {typeof user !== "string" ? "" : user}
                 </StyledTitle>
                 <Userinfo />
+                <Search/>
                 <ButtonGroup>
                     <StyledButton to="#" onClick={() => logoutUser(history)}>
                         Logout
