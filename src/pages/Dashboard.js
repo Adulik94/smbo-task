@@ -1,23 +1,21 @@
 import React from "react";
 import {
     StyledTitle,
-    Avatar,
     StyledButton,
     ButtonGroup,
     StyledFormArea,
     colors
 } from "../components/Styles";
 //logo
-import Logo from "./../assets/logo.png";
 import { Userinfo } from "../auth/actions/userActions";
 
 //auth & redux actions
-import { connect, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import { logoutUser } from "../auth/actions/userActions";
 
 //history
 import { useHistory } from "react-router-dom";
-import Search from "./Search";
+import Main from "./YoutubeSearch/Main";
 
 const Dashboard = ({ logoutUser, user }) => {
     const history = useHistory();
@@ -42,7 +40,7 @@ const Dashboard = ({ logoutUser, user }) => {
                     Welcome {typeof user !== "string" ? "" : user}
                 </StyledTitle>
                 <Userinfo />
-                <Search/>
+                <Main/>
                 <ButtonGroup>
                     <StyledButton to="#" onClick={() => logoutUser(history)}>
                         Logout
