@@ -1,5 +1,6 @@
 import React from 'react';
 import './video.css';
+import AudioPlayer from "../Audio Player/AudioPlayer";
 
 const VideoItem = ({video , handleVideoSelect}) => {
     return (
@@ -9,7 +10,9 @@ const VideoItem = ({video , handleVideoSelect}) => {
                 <div className='header '>{video.snippet.title}</div>
                 <div className="btn-play">
                     <div className="play" >
-                        <div data-video={video.id.videoId} data-autoplay="0" data-loop="1" id="youtube-audio1"> </div>
+                        {/*<div data-video={video.id.videoId} data-autoplay="0" data-loop="1" id="youtube-audio1"> </div>*/}
+                        <AudioPlayer src={video.id.videoId} />
+
                     </div>
                 </div>
             </div>

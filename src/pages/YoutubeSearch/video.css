@@ -24,35 +24,31 @@ button {
     padding: 0.5em 1.5em;
 }
 
-button:active {
-    background-color: #05b;
-}
+/*button:active {*/
+/*    background-color: #05b;*/
+/*}*/
 
 
 .btn-play {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
 
-.play {
-    width: 70px;
-    height: 70px;
-    background-color: #0055bb;
-}
 
-input {
-    border: 1px solid #999;
-    border-radius: 3px;
-    font: inherit;
-    padding: 0.5em;
-    outline: none;
-}
 
-input:focus {
-    outline: auto #17f;
-}
+/*input {*/
+/*    border: 1px solid #999;*/
+/*    border-radius: 3px;*/
+/*    font: inherit;*/
+/*    padding: 0.5em;*/
+/*    outline: none;*/
+/*}*/
+
+/*input:focus {*/
+/*    outline: auto #17f;*/
+/*}*/
 
 ul {
     list-style-type: none;
