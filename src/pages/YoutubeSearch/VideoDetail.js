@@ -1,4 +1,8 @@
 import React from "react";
+import AudioPlayer from "../Audio Player/AudioPlayer";
+
+
+
 const VideoDetail = ({video}) => {
     if (!video) {
         return <div>
@@ -13,9 +17,12 @@ const VideoDetail = ({video}) => {
             <div className="ui embed">
                 <iframe src={videoSrc} allowFullScreen title="Video player"/>
             </div>
+            <AudioPlayer src={videoSrc}/>
+
             <div className="ui segment">
                 <h4 className="ui header">{video.snippet.title}
                 </h4>
+
                 <p>{video.snippet.description}</p>
             </div>
         </div>

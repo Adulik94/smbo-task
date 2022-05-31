@@ -1,0 +1,113 @@
+:root {
+    --white: #fff;
+    --active-color: rgba(176, 134, 217, 0.52);
+    --controler: rgba(48, 17, 78, 0.52)
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/*html {*/
+/*    font-family: Arial, Helvetica, sans-serif;*/
+/*    height: 100%;*/
+/*    transition: background 0.4s ease;*/
+/*}*/
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="range"] {
+    height: 5px;
+    -webkit-appearance: none;
+    width: 100%;
+    border-radius: 8px;
+    background: #5a1b74;
+    transition: background 0.2s ease;
+    cursor: pointer;
+}
+
+
+
+
+
+.audio-player {
+    max-width: fit-content;
+    /*padding: 14px;*/
+    margin: 0px auto;
+    color: var(--white);
+}
+
+.artwork {
+    border-radius: 120px;
+    display: block;
+    margin: auto;
+    height: 200px;
+    width: 200px;
+}
+
+.track-info {
+    text-align: center;
+    z-index: 1;
+    position: relative;
+}
+
+.title {
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+/*.artist {*/
+/*    font-weight: 300;*/
+/*    margin-top: 0;*/
+/*}*/
+
+.audio-controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 auto ;
+}
+
+.audio-controls .backward svg,
+.audio-controls .forward svg {
+    width: 25px;
+    height: 25px;
+}
+
+.audio-controls .play svg,
+.audio-controls .pause svg {
+    height: 20px;
+    width: 20px;
+}
+/*audio-player*/
+.audio-controls path {
+    fill: var(--controler);
+}
+
+.color-backdrop {
+    background: linear-gradient(45deg, var(--active-color) 20%, transparent 100%)
+    no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.color-backdrop.playing {
+    animation: colorChange 20s alternate infinite;
+}
+
+@keyframes colorChange {
+    from {
+        filter: hue-rotate(0deg);
+    }
+    to {
+        filter: hue-rotate(360deg);
+    }
+}
